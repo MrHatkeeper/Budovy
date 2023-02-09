@@ -68,24 +68,30 @@ public class BuildingsOperations
         List<string> file = File.ReadAllLines(BuildingsPath).ToList();
         file.Add($"{id};{name};{desc}");
         File.WriteAllLines(BuildingsPath, file);
-
     }
 
     public void EditBuilding(int id, string name, string desc)
     {
+        List<string> file = File.ReadAllLines(RoomsPath).ToList();
+        file.RemoveAll(s => int.Parse(s.Split(";")[0]) == id);
+        file.Add($"{id};{name};{desc}");
+        File.WriteAllLines(BuildingsPath, file);
     }
 
     public void RemoveBuilding(int id)
     {
-        List<string> file = File.ReadAllLines(BuildingsPath).ToList();
+        List<string> file = File.ReadAllLines(RoomsPath).ToList();
+        List<string> listOfRoomIds = file.FindAll(s => int.Parse(s.Split(";")[0]) == id);
+        file.RemoveAll(s => int.Parse(s.Split(";")[0]) == id);
+        File.WriteAllLines(RoomsPath,file);
 
-        foreach (var i in file)
-        {
-            List<string> holder = i.Split(";").ToList();
-            if (int.Parse(holder[0]) == id)
-            {
-                file.Remove((int.Parse(holder[0]) == id));
-            }
-        }
+
+        file = File.ReadAllLines(TimeSchedulesPath).ToList();
+        foreach (var i in listOfRoomIds) file.RemoveAll(s => int.Parse(s.Split(";")[0]) == int.Parse(i));
+        File.WriteAllLines(TimeSchedulesPath,file);
+
+        file = File.ReadAllLines(BuildingsPath).ToList();
+        file.RemoveAll(s => int.Parse(s.Split(";")[0]) == id);
+        File.WriteAllLines(BuildingsPath, file);
     }
 }
