@@ -16,17 +16,15 @@
                 <input asp-for="Desc" type="text" class="form-control"/>
             </div>
             <input type="submit" value="Add building" class="btn-primary mt-3 rounded-3"/>
-        </form>
+        </form> 
     </div>
 
     foreach (var i in (ViewData["data"] as IList<Building>)!)
     {
-        Console.Out.WriteLine(i);
         <div class="border-bottom d-inline">
             <h1>@i.Name</h1>
             <p>@i.Description</p>
             <button class="btn-primary" value="@i.Id.ToString()">Open Detail</button>
-            <button class="btn-danger" value="@i.Id.ToString()">Remove</button>
         </div>
     }
 }

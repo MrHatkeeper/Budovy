@@ -17,6 +17,12 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult RemoveBuilding(int id)
+    {
+        Console.Out.WriteLine("gigagej");
+        _op.RemoveBuilding(id);
+        return View("/");
+    }
     
     //"../Detail/Bd", model
     public IActionResult Index()
