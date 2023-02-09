@@ -21,9 +21,11 @@
 
     foreach (var i in (ViewData["data"] as IList<Building>)!)
     {
-        <div class="border-bottom">
+        Console.Out.WriteLine(i);
+        <div class="border-bottom d-inline">
             <h1>@i.Name</h1>
             <p>@i.Description</p>
+            <button class="btn-primary" value="@i.Id.ToString()">Open Detail</button>
         </div>
     }
 }

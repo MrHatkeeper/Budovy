@@ -2,13 +2,15 @@
 
 public class Room
 {
+    public int ParentId { get; set; }
     public int Id { get; set; }
     public string Name { get; set; }
 
-    public Room(int id, string name)
+    public Room(int parentId, int id, string name)
     {
         Id = id;
         Name = name;
+        ParentId = parentId;
     }
     
 }

@@ -2,7 +2,7 @@
 
 namespace Budovy.Models.AddModels;
 
-public class AddBuildingModel
+public class AddRoomModel
 {
     public int Id { get; set; }
 
