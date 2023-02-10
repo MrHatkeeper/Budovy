@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "hLGCe0lxKMWHy7EpTBpQ0SxOt76D6ZYIJxA/ZFKUDiHy4foAlH2QwTjmS0nEIv/YEGb2mrB2TgvXAd3iXM/ecg==",
+  "dgSpecHash": "s4GxMBmvDud+qBd4D9uno6gwxlsLWWjpp5EIVwm4c3PdtLOvU4AVku4ETkCTcRBmEjIsAaTMlIiYpr840G2yqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\krchk\\RiderProjects\\Budovy\\Budovy\\Budovy.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/warel/RiderProjects/Budovy/Budovy/Budovy.csproj",
+  "expectedPackageFiles": [
+    "/home/warel/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.0/microsoft.aspnetcore.app.ref.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -22,9 +22,12 @@
     foreach (var i in (ViewData["data"] as IList<Building>)!)
     {
         <div class="border-bottom d-inline">
-            <h1>@i.Name</h1>
-            <p>@i.Description</p>
-            <button class="btn-primary" value="@i.Id.ToString()">Open Detail</button>
+            <form asp-controller="Home">
+                <h1>@i.Name</h1>
+                <p>@i.Description</p>
+                <input type="hidden" name="id" value="@i.Id"/>
+                <a type="submit" class="btn-primary" asp-route-id="@i.Id" asp-controller="Detail" asp-action="Bd">Open Detail</a>
+            </form>
         </div>
     }
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\krchk\\RiderProjects\\Budovy\\Budovy\\Budovy.csproj": {}
+    "/home/warel/RiderProjects/Budovy/Budovy/Budovy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\krchk\\RiderProjects\\Budovy\\Budovy\\Budovy.csproj": {
+    "/home/warel/RiderProjects/Budovy/Budovy/Budovy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\krchk\\RiderProjects\\Budovy\\Budovy\\Budovy.csproj",
+        "projectUniqueName": "/home/warel/RiderProjects/Budovy/Budovy/Budovy.csproj",
         "projectName": "Budovy",
-        "projectPath": "C:\\Users\\krchk\\RiderProjects\\Budovy\\Budovy\\Budovy.csproj",
-        "packagesPath": "C:\\Users\\krchk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\krchk\\RiderProjects\\Budovy\\Budovy\\obj\\",
+        "projectPath": "/home/warel/RiderProjects/Budovy/Budovy/Budovy.csproj",
+        "packagesPath": "/home/warel/.nuget/packages/",
+        "outputPath": "/home/warel/RiderProjects/Budovy/Budovy/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\krchk\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/warel/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -48,6 +48,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.0, 7.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -56,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.100/RuntimeIdentifierGraph.json"
         }
       }
     }
