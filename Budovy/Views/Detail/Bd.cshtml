@@ -5,19 +5,24 @@
     Layout = "_Layout";
 }
 <div>
-    <h1>@ViewData["buildingName"]</h1>
-    <h1>@ViewData["buildingDesc"]</h1>
-    <p>@ViewData["buildingId"]</p>
-    <form asp-controller="Detail" asp-action="RemoveBuilding">
-        <input type="hidden" name="Name" value="@ViewData["buildingName"]" asp-for="Name"/>
-        <input type="hidden" name="ParentId" value="@ViewData["buildingId"]" asp-for="ParentId"/>
-        <input type="submit" value="Remove this building" class="btn-primary"/>
-    </form>
+    <div class="display d-flex">
+        <form asp-controller="Detail" asp-action="EditPost">
+            <input type="text" name="Name" value="@ViewData["buildingName"]" asp-for="Name">
+            <input type="text" name="Desc" value="@ViewData["buildingDesc"]" asp-for="Desc">
+            <input type="hidden" name="Id" value="@ViewData["buildingId"]" asp-for="ParentId">
+            <input type="submit" value="Edit building" class="btn-primary"/>
+        </form>
+        <form asp-controller="Detail" asp-action="RemoveBuilding" class="ps-3">
+            <input type="hidden" name="Name" value="@ViewData["buildingName"]" asp-for="Name"/>
+            <input type="hidden" name="ParentId" value="@ViewData["buildingId"]" asp-for="ParentId"/>
+            <input type="submit" value="Remove this building" class="btn-danger"/>
+        </form>
+    </div>
     <form asp-controller="Detail" asp-action="AddRoom">
         <label asp-for="Name">Name</label>
-        <input asp-for="Name" type="text" name="Name" class="form-control"/>
+        <input asp-for="Name" type="text" name="Name"/>
         <input type="hidden" name="ParentId" asp-for="ParentId" value="@ViewData["buildingId"]"/>
-        <input type="submit" value="Add room" class="btn-primary mt-3 rounded-3"/>
+        <input type="submit" value="Add room" class="btn-primary"/>
     </form>
     @{
         <h1>Rooms:</h1>

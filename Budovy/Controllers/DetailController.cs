@@ -16,12 +16,20 @@ public class DetailController : Controller
         _ro.AddRoom(model.Name, model.ParentId);
         return View("Bd");
     }
+
+    [HttpPost]
+    public IActionResult EditPost(AddRoomModel model)
+    {
+        _op.EditBuilding(model.ParentId, model.Name!, model.Desc!);
+        
+        return View("Bd");
+    }
     
     [HttpPost]
     public IActionResult RemoveBuilding(AddRoomModel model)
     {
         _op.RemoveBuilding(model.ParentId);
-        return View("Bd");
+        return View("../Home/Index");
     }
 
     // GET
@@ -39,7 +47,18 @@ public class DetailController : Controller
 
     public IActionResult RoomDetail(int id)
     {
+        Room room = _ro.GetRoom(id);
+        ViewData["roomName"] = room.Name;
+        ViewData["roomId"] = room.Id;
+        
+        
         return View();
+    }
+
+    public IActionResult EditRoom(AddRoomModel model)
+    {
+        _ro.EditRoom(model.ParentId, model.Name!);
+        return View("RoomDetail");
     }
 }
 

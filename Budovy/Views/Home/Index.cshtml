@@ -25,7 +25,6 @@
             <form>
                 <h1>@i.Name</h1>
                 <p>@i.Description</p>
-                <p>@i.Id</p>
                 <input type="hidden" name="id" value="@i.Id"/>
                 <a type="submit" class="btn-primary" asp-route-id="@i.Id" asp-controller="Home" asp-action="Bd">Open Detail</a>
             </form>
