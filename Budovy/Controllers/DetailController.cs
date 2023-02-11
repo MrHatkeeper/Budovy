@@ -7,23 +7,39 @@ namespace Budovy.Controllers;
 
 public class DetailController : Controller
 {
-    private BuildingsOperations _op = new();
-    
-    public IActionResult RemoveBuilding(int id)
+    private RoomsOperations _ro = new();
+    private readonly BuildingsOperations _op = new();
+
+    [HttpPost]
+    public IActionResult AddRoom(AddRoomModel model)
     {
-        Console.Out.WriteLine("gigagej");
-        _op.RemoveBuilding(id);
-        return View("/");
+        _ro.AddRoom(model.Name, model.ParentId);
+        return View("Bd");
     }
     
+    [HttpPost]
+    public IActionResult RemoveBuilding(AddRoomModel model)
+    {
+        _op.RemoveBuilding(model.ParentId);
+        return View("Bd");
+    }
+
     // GET
     public IActionResult Bd(int id)
     {
         Building buildingData = _op.GetBuilding(id);
-        ViewData["buildingId"] = id;
         ViewData["buildingName"] = buildingData.Name;
         ViewData["buildingDesc"] = buildingData.Description;
-        
+
+        List<Room> roomsList = _ro.GetAllRooms();
+        ViewData["roomList"] = roomsList;
+
+        return View("Bd");
+    }
+
+    public IActionResult RoomDetail(int id)
+    {
         return View();
     }
 }
+

@@ -1,4 +1,5 @@
-﻿@model Budovy.Models.AddModels.AddBuildingModel
+﻿@using Budovy.Controllers.Budovy.objects
+@model Budovy.Models.AddModels.AddRoomModel
 
 @{
     Layout = "_Layout";
@@ -6,6 +7,29 @@
 <div>
     <h1>@ViewData["buildingName"]</h1>
     <h1>@ViewData["buildingDesc"]</h1>
-    <button>Remove Building</button>
-    <p>pppppppppppppp</p>
+    <p>@ViewData["buildingId"]</p>
+    <form asp-controller="Detail" asp-action="RemoveBuilding">
+        <input type="hidden" name="Name" value="@ViewData["buildingName"]" asp-for="Name"/>
+        <input type="hidden" name="ParentId" value="@ViewData["buildingId"]" asp-for="ParentId"/>
+        <input type="submit" value="Remove this building" class="btn-primary"/>
+    </form>
+    <form asp-controller="Detail" asp-action="AddRoom">
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" type="text" name="Name" class="form-control"/>
+        <input type="hidden" name="ParentId" asp-for="ParentId" value="@ViewData["buildingId"]"/>
+        <input type="submit" value="Add room" class="btn-primary mt-3 rounded-3"/>
+    </form>
+    @{
+        <h1>Rooms:</h1>
+        foreach (var room in (ViewData["roomList"] as IList<Room>)!)
+        {
+            <div class="border-bottom d-inline">
+                <form>
+                    <h3>@room.Name</h3>
+                    <input type="hidden" name="id" value="@room.Id"/>
+                    <a type="submit" class="btn-primary" asp-route-id="@room.Id" asp-controller="Detail" asp-action="RoomDetail">Select</a>
+                </form>
+            </div>
+        }
+    }
 </div>

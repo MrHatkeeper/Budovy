@@ -6,7 +6,7 @@
 
 @{
     <div class="mb-5">
-        <form asp-controller="Home" asp-action="Index">
+        <form asp-controller="Home" asp-action="AddBuilding">
             <div class="form-group">
                 <label asp-for="Name">Name</label>
                 <input asp-for="Name" type="text" name="name" class="form-control"/>
@@ -16,17 +16,18 @@
                 <input asp-for="Desc" type="text" class="form-control"/>
             </div>
             <input type="submit" value="Add building" class="btn-primary mt-3 rounded-3"/>
-        </form> 
+        </form>
     </div>
 
     foreach (var i in (ViewData["data"] as IList<Building>)!)
     {
         <div class="border-bottom d-inline">
-            <form asp-controller="Home">
+            <form>
                 <h1>@i.Name</h1>
                 <p>@i.Description</p>
+                <p>@i.Id</p>
                 <input type="hidden" name="id" value="@i.Id"/>
-                <a type="submit" class="btn-primary" asp-route-id="@i.Id" asp-controller="Detail" asp-action="Bd">Open Detail</a>
+                <a type="submit" class="btn-primary" asp-route-id="@i.Id" asp-controller="Home" asp-action="Bd">Open Detail</a>
             </form>
         </div>
     }

@@ -7,32 +7,9 @@ public class BuildingsOperations
     private const string BuildingsPath = "bin/Debug/net7.0/database/budovy.csv";
     private const string RoomsPath = "bin/Debug/net7.0/database/rooms.csv";
     private const string TimeSchedulesPath = "bin/Debug/net7.0/database/timeSchedule.csv";
-    private const string IdCounter = "bin/Debug/net7.0/database/idCounter";
+    private readonly IdOperations _idOperations = new();
 
-    private int GetIdAndAddOneToId(string typeOfId)
-    {
-        int output = new int();
-        var file = File.ReadAllLines(IdCounter).ToList();
-        switch (typeOfId)
-        {
-            case "b":
-                output = int.Parse(file[0]) + 1;
-                file[0] = output.ToString();
-                break;
-            case "r":
-                output = int.Parse(file[1]) + 1;
-                file[0] = output.ToString();
-                break;
-            case "t":
-                output = int.Parse(file[2]) + 1;
-                file[0] = output.ToString();
-                break;
-        }
 
-        File.WriteAllLines(IdCounter, file);
-
-        return output;
-    }
 
     public List<Building> GetAllBuildings()
     {
@@ -64,7 +41,7 @@ public class BuildingsOperations
 
     public void AddBuilding(string? name, string? desc)
     {
-        int id = GetIdAndAddOneToId("b");
+        int id = _idOperations.GetIdAndAddOneToId("b");
         List<string> file = File.ReadAllLines(BuildingsPath).ToList();
         file.Add($"{id};{name};{desc}");
         File.WriteAllLines(BuildingsPath, file);
@@ -80,6 +57,7 @@ public class BuildingsOperations
 
     public void RemoveBuilding(int id)
     {
+        Console.Out.WriteLine(id);
         List<string> file = File.ReadAllLines(RoomsPath).ToList();
         List<string> listOfRoomIds = file.FindAll(s => int.Parse(s.Split(";")[0]) == id);
         file.RemoveAll(s => int.Parse(s.Split(";")[0]) == id);
@@ -91,6 +69,7 @@ public class BuildingsOperations
         File.WriteAllLines(TimeSchedulesPath,file);
 
         file = File.ReadAllLines(BuildingsPath).ToList();
+        file.ForEach(s => Console.WriteLine($"s = {s.Split(";")[0]}; id = {id}"));
         file.RemoveAll(s => int.Parse(s.Split(";")[0]) == id);
         File.WriteAllLines(BuildingsPath, file);
     }
