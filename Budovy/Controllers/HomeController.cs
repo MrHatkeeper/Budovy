@@ -39,7 +39,7 @@ public class HomeController : Controller
         ViewData["buildingName"] = buildingData.Name;
         ViewData["buildingDesc"] = buildingData.Description;
 
-        List<Room> roomsList = _ro.GetAllRooms();
+        List<Room> roomsList = _ro.GetAllRooms(id);
         ViewData["roomList"] = roomsList;
 
         return View("../Detail/Bd");

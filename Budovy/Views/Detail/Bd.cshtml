@@ -6,7 +6,7 @@
 }
 <div>
     <div class="display d-flex">
-        <form asp-controller="Detail" asp-action="EditPost">
+        <form asp-controller="Detail" asp-action="EditBuilding">
             <input type="text" name="Name" value="@ViewData["buildingName"]" asp-for="Name">
             <input type="text" name="Desc" value="@ViewData["buildingDesc"]" asp-for="Desc">
             <input type="hidden" name="Id" value="@ViewData["buildingId"]" asp-for="ParentId">

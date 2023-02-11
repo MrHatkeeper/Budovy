@@ -5,18 +5,18 @@ namespace Budovy.Controllers.Budovy;
 public class RoomsOperations
 {
     private readonly IdOperations _idOperations = new IdOperations();
-
     private const string TimeSchedulesPath = "bin/Debug/net7.0/database/timeSchedule.csv";
     private const string RoomsPath = "bin/Debug/net7.0/database/rooms.csv";
 
-    public List<Room> GetAllRooms()
+    public List<Room> GetAllRooms(int parentId)
     {
         List<string> listOfBuildings = File.ReadAllLines(RoomsPath).ToList();
         List<Room> output = new();
         foreach (var i in listOfBuildings)
         {
             List<string> holder = i.Split(";").ToList();
-            output.Add(new Room(int.Parse(holder[0]), int.Parse(holder[1]), holder[2]));
+            if (parentId == int.Parse(holder[0]))
+                output.Add(new Room(int.Parse(holder[0]), int.Parse(holder[1]), holder[2]));
         }
 
         return output;
@@ -24,11 +24,11 @@ public class RoomsOperations
 
     public Room GetRoom(int id)
     {
-        List<string> listOfBuildings = File.ReadAllLines(RoomsPath).ToList();
-        foreach (var i in listOfBuildings)
+        List<string> listOfRooms = File.ReadAllLines(RoomsPath).ToList();
+        foreach (var i in listOfRooms)
         {
             List<string> holder = i.Split(";").ToList();
-            if (int.Parse(holder[0]) == id)
+            if (int.Parse(holder[1]) == id)
             {
                 return new Room(int.Parse(holder[0]), int.Parse(holder[1]), holder[2]);
             }
@@ -45,19 +45,20 @@ public class RoomsOperations
         File.WriteAllLines(RoomsPath, file);
     }
 
-    public void EditRoom(int id, string name)
+    public void EditRoom(int parentId, int id, string name)
     {
         List<string> file = File.ReadAllLines(RoomsPath).ToList();
-        file.RemoveAll(s => int.Parse(s.Split(";")[0]) == id);
-        file.Add($"{_idOperations};{id};{name}");
+        file.RemoveAll(s => int.Parse(s.Split(";")[1]) == id);
+        file.Add($"{parentId};{id};{name}");
         File.WriteAllLines(RoomsPath, file);
     }
 
     public void RemoveRoom(int id)
     {
+
         List<string> file = File.ReadAllLines(RoomsPath).ToList();
-        List<string> listOfRoomIds = file.FindAll(s => int.Parse(s.Split(";")[0]) == id);
-        file.RemoveAll(s => int.Parse(s.Split(";")[0]) == id);
+        List<string> listOfRoomIds = file.FindAll(s => int.Parse(s.Split(";")[1]) == id);
+        file.RemoveAll(s => int.Parse(s.Split(";")[1]) == id);
         File.WriteAllLines(RoomsPath, file);
 
 

@@ -2,7 +2,14 @@
 
 public class AddRoomModel
 {
-    public string? Desc { get; set; }
     public int ParentId { get; set; }
+    
+    public DateTime Start { get; set; }
+    
+    public DateTime End { get; set; }
+    
+    public int Id { get; set; }
     public string? Name { get; set; }
+    
+    public string? Desc { get; set; }
 }
