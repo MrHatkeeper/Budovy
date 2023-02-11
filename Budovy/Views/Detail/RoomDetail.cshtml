@@ -22,9 +22,9 @@
         <label asp-for="Name">Name</label>
         <input asp-for="Name" type="text" name="Name"/>
         <label asp-for="Start">Start</label>
-        <input asp-for="Start" type="date" name="Start"/>
+        <input asp-for="Start" type="datetime-local" name="Start"/>
         <label asp-for="End">End</label>
-        <input asp-for="End" type="date" name="End"/>
+        <input asp-for="End" type="datetime-local" name="End"/>
         <input asp-for="ParentId" type="hidden" value="@ViewData["roomId"]" name="ParentId"/>
         <input type="hidden" name="ParentId" asp-for="ParentId" value="@ViewData["buildingId"]"/>
         <input type="submit" value="Add room" class="btn-primary"/>
